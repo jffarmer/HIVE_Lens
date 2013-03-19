@@ -1,3 +1,1 @@
-HAI GUISE
-Joe was here
-Kyle is here
+This application demonstrates Android's Intent System, specifically calls to the camera and networking services.
