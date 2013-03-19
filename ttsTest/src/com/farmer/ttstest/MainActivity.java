@@ -341,6 +341,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        else if(wordStr.equals("15") && helpTrigger == true)
 		        {
 		        	helpTrigger = false;
+			        tts.speak("I'll show you a YouTube video if you say develop and video in the same sentence.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("16") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
 			        tts.speak("Do you really need this one explained? I will tell you what each command does based on its number.",TextToSpeech.QUEUE_FLUSH, null);
 		        } 
 		       
@@ -428,6 +433,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 			        	}
 		        	}
 		        
+		        }
+		        else if(wordStr.contains("develop")&&wordStr.contains("video"))
+		        {
+		        	Intent youtubeIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:faGrUaVgeGk"));
+			    	startActivity(youtubeIntent);
 		        }
 		        else if(wordStr.equals("turn blue"))
 		        {
