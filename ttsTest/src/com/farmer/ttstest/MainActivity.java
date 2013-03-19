@@ -550,7 +550,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        }
 			       
 		        else{	
-		        			speakOut();
+		        	helpTrigger = false;
+		        	speakOut();
 		        }  
 	        }
 	    	else if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == RESULT_CANCELED) {
