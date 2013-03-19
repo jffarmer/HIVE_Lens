@@ -361,6 +361,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        else if(wordStr.equals("what is your name")||wordStr.equals("who are you")){
 		        	String model = getDeviceCodeName();
 		        	String serial = getDeviceSerial();
+		        	model = model.toUpperCase();
 		        	txtText.setText(serial + ", a.k.a., " +model);
 		        	if(model.equals("MAKO"))
 		        	{
