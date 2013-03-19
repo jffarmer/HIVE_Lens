@@ -432,6 +432,9 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 			        		txtText.setText(resultStr);
 			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
 			        	}
+			        	else if(!operatorStr.equals("over") && !operatorStr.equals("*") && !operatorStr.equals("times") && !operatorStr.equals("-") && !operatorStr.equals("minus") && !operatorStr.equals("+") && !operatorStr.equals("plus")){
+			        		tts.speak("Sorry. I don't understand the " +operatorStr+ " operator.", TextToSpeech.QUEUE_FLUSH, null);
+			        	}
 		        	}
 		        
 		        }
