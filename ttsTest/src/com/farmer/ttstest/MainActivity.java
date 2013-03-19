@@ -1,6 +1,8 @@
 package com.farmer.ttstest;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
@@ -12,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -224,7 +227,23 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    public void satNetModis(View v){
 	    	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://develop.larc.nasa.gov/Boiler/Manta/SatNet3/modis.html"));
 	    	startActivity(browserIntent);
-	    }
+	    } 
+
+	    public String getDeviceName() {
+	    	  //String manufacturer = Build.MANUFACTURER;
+	    	  String model = Build.MODEL;
+	    	  return model;
+	    	}
+	    public String getDeviceCodeName() {
+	    	  //String manufacturer = Build.MANUFACTURER;
+	    	  String codeName = Build.BOARD;
+	    	  return codeName;
+	    	}
+	    public String getDeviceSerial() {
+	    	  //String manufacturer = Build.MANUFACTURER;
+	    	  String serial = Build.SERIAL;
+	    	  return serial;
+	    	}
 
 	    @Override
 	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -240,6 +259,42 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        if(wordStr.equals("I'm an idiot")||wordStr.equals("I am an idiot"))
 		        {
 		        	tts.speak("You're an idiot", TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(wordStr.equals("what is today")){
+		        	String currentDateString = DateFormat.getDateInstance().format(new Date());
+		        	tts.speak(currentDateString, TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(wordStr.equals("what are you")){
+		        	String model = getDeviceName();
+		        	txtText.setText(model);
+		        	tts.speak("I am a " + model, TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(wordStr.equals("what is your name")||wordStr.equals("who are you")){
+		        	String model = getDeviceCodeName();
+		        	String serial = getDeviceSerial();
+		        	txtText.setText(serial + ", a.k.a., " +model);
+		        	if(model.equals("MAKO"))
+		        	{
+		        		model = "mayko";
+		        	}
+		        	else
+		        	{
+		        		
+		        	}
+		        	tts.speak("My name is " + serial +", but my nickname among developers is " + model, TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(wordStr.equals("what time is it")){
+		        	String currentTimeString = DateFormat.getTimeInstance().format(new Date());
+		        	String[] tokens = currentTimeString.split(":");
+			        	String hour = tokens[0];
+			        	String minutes = tokens[1];
+			        	String seconds = tokens[2];
+			        String[] tokens2 = seconds.split(" ");
+			        	String seconds2 = tokens2[0];
+			        	String amPm = tokens2[1];
+		        	txtText.setText(hour +":"+ minutes + " " + amPm);
+		        	tts.speak(hour +":"+ minutes +  " " + amPm, TextToSpeech.QUEUE_FLUSH, null);
+		        	
 		        }
 		        else if(Character.isDigit(wordStr.charAt(0))){
 		        	//Do math
