@@ -43,6 +43,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    String name = "";
 	    Boolean nameTrigger = false;
 	    Boolean commandViewed = false;
+	    Boolean helpTrigger = false;
 	 
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -260,6 +261,89 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        {
 		        	tts.speak("You're an idiot", TextToSpeech.QUEUE_FLUSH, null);
 		        }
+		        else if((wordStr.equals("help") && helpTrigger == false))
+		        {
+		        	helpTrigger = true;
+		        	txtText.setText("I can help!");
+		        	String text = "Say the number of a command you want to know more about.";
+		        	tts.speak(text,TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(wordStr.equals("1") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("RGB means red, green, and blue. Say, turn, followed by a color and I will set the background to your chosen color. Say change back to reset my background color.",TextToSpeech.QUEUE_FLUSH, null);
+		        }  
+		        else if(wordStr.equals("2") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will close myself upon hearing this command.",TextToSpeech.QUEUE_FLUSH, null);
+		        }  
+		        else if(wordStr.equals("3") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will close myself upon hearing this command.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("4") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will close myself upon hearing this command. P S. You Suck.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("5") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I refuse to copy that word for word.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("6") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will ask or tell you your name depending on whether or not I know it.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("7") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("Say this to change your name.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("8") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will tell you about the mowdis instrument.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("9") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will tell you what model phone I am.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("10") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will tell you my serial number and board name.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("11") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will tell you my serial number and board name.",TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(wordStr.equals("12") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will tell you today's date.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("13") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+		        	tts.speak("I will tell you the current time.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("14") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+			        tts.speak("I can do math for you! Say an integer number, followed by an operator, followed by another integer number. I understand the following operators. Plus, Minus, Times, and Over, Over is my division command.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		        else if(wordStr.equals("15") && helpTrigger == true)
+		        {
+		        	helpTrigger = false;
+			        tts.speak("Do you really need this one explained? I will tell you what each command does based on its number.",TextToSpeech.QUEUE_FLUSH, null);
+		        } 
+		       
 		        else if(wordStr.equals("what is today")){
 		        	String currentDateString = DateFormat.getDateInstance().format(new Date());
 		        	tts.speak(currentDateString, TextToSpeech.QUEUE_FLUSH, null);
@@ -309,32 +393,33 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 			        	String firstNumStr = tokens[0];
 			        	String operatorStr = tokens[1];
 			        	String secondNumStr = tokens[2];
-			        	
+			        	firstNumStr = firstNumStr.replace(",", "");
+			        	secondNumStr = secondNumStr.replace(",", "");
 			        	firstNum = Integer.parseInt(firstNumStr);
 			        	secondNum = Integer.parseInt(secondNumStr);
 			        	
-			        	if(operatorStr.equals("+"))
+			        	if(operatorStr.equals("+")||operatorStr.equals("plus"))
 			        	{
 			        		int result = firstNum + secondNum;
 			        		String resultStr = ""+result;
 			        		txtText.setText(resultStr);
 			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
 			        	}
-			        	if(operatorStr.equals("-"))
+			        	if(operatorStr.equals("-")||operatorStr.equals("minus"))
 			        	{
 			        		int result = firstNum - secondNum;
 			        		String resultStr = ""+result;
 			        		txtText.setText(resultStr);
 			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
 			        	}
-			        	if(operatorStr.equals("*"))
+			        	if(operatorStr.equals("*")||operatorStr.equals("times"))
 			        	{
 			        		int result = firstNum * secondNum;
 			        		String resultStr = ""+result;
 			        		txtText.setText(resultStr);
 			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
 			        	}
-			        	if(operatorStr.equals("over"))
+			        	if(operatorStr.equals("over")||operatorStr.equals("over"))
 			        	{
 			        		int result = firstNum / secondNum;
 			        		String resultStr = ""+result;
@@ -453,6 +538,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        	name = text;
 			        tts.speak("Hello, " + name, TextToSpeech.QUEUE_FLUSH, null);
 		        }
+			       
 		        else{	
 		        			speakOut();
 		        }  
