@@ -225,6 +225,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://develop.larc.nasa.gov/Boiler/Manta/SatNet3/modis.html"));
 	    	startActivity(browserIntent);
 	    }
+
 	    @Override
 	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    	
@@ -239,6 +240,54 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        if(wordStr.equals("I'm an idiot")||wordStr.equals("I am an idiot"))
 		        {
 		        	tts.speak("You're an idiot", TextToSpeech.QUEUE_FLUSH, null);
+		        }
+		        else if(Character.isDigit(wordStr.charAt(0))){
+		        	//Do math
+		        	int firstNum = 0;
+		        	int secondNum = 0;
+		        	
+		        	String[] tokens = wordStr.split(" ");
+		        	if(tokens.length!=3){
+		        		speakOut();
+		        	}
+		        	else{
+			        	String firstNumStr = tokens[0];
+			        	String operatorStr = tokens[1];
+			        	String secondNumStr = tokens[2];
+			        	
+			        	firstNum = Integer.parseInt(firstNumStr);
+			        	secondNum = Integer.parseInt(secondNumStr);
+			        	
+			        	if(operatorStr.equals("+"))
+			        	{
+			        		int result = firstNum + secondNum;
+			        		String resultStr = ""+result;
+			        		txtText.setText(resultStr);
+			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
+			        	}
+			        	if(operatorStr.equals("-"))
+			        	{
+			        		int result = firstNum - secondNum;
+			        		String resultStr = ""+result;
+			        		txtText.setText(resultStr);
+			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
+			        	}
+			        	if(operatorStr.equals("*"))
+			        	{
+			        		int result = firstNum * secondNum;
+			        		String resultStr = ""+result;
+			        		txtText.setText(resultStr);
+			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
+			        	}
+			        	if(operatorStr.equals("over"))
+			        	{
+			        		int result = firstNum / secondNum;
+			        		String resultStr = ""+result;
+			        		txtText.setText(resultStr);
+			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
+			        	}
+		        	}
+		        
 		        }
 		        else if(wordStr.equals("turn blue"))
 		        {
