@@ -2,11 +2,15 @@ package com.farmer.ttstest;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -35,6 +39,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    Dialog settingsDialog;
 	    String name = "";
 	    Boolean nameTrigger = false;
+	    Boolean commandViewed = false;
 	 
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -99,7 +104,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
 	                Log.e("TTS", "This Language is not supported");
 	            } else {
-	            	tts.speak("Hello.", TextToSpeech.QUEUE_FLUSH, null);
+	            	tts.speak("App Initialized", TextToSpeech.QUEUE_FLUSH, null);
 	            }
 	 
 	        } else {
@@ -111,7 +116,12 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    private void speakOut() {
 	 
 	        String text = txtText.getText().toString();
-	        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	        if(text.equals(""))
+	        {
+	        	tts.speak("You know maybe you should type or say something first", TextToSpeech.QUEUE_FLUSH, null);
+	        }
+	        else{
+	        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);}
 	    }
 	    
 	    public void repeat(View v) {
@@ -122,9 +132,74 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    	txtText.setText("");
 	    }
 	    
-	    public void modis(View v) {
-		   	 String text = "mowdis is a key instrument aboard the Terra and ockwa satellites. Terra's orbit around the Earth is timed so that it passes from north to south across the equator in the morning, while ockwa passes south to north over the equator in the afternoon. Terra mowdis and auqwa mowdis are viewing the entire Earth's surface every 1 to 2 days, acquiring data in 36 spectral bands, or groups of wavelengths. These data will improve our understanding of global dynamics and processes occurring on the land, in the oceans, and in the lower atmosphere. mowdis is playing a vital role in the development of validated, global, interactive Earth system models able to predict global change accurately enough to assist policy makers in making sound decisions concerning the protection of our environment.";
-		   			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	    public void commands(View v) {
+	    	txtText.setText("Command List Opened");
+	    	if(commandViewed == true)
+	    	{
+	    		final Random myRandom = new Random();
+	    		int select = myRandom.nextInt(3);
+	    		if(select == 0)
+	    		{
+	    			tts.speak("Commands", TextToSpeech.QUEUE_FLUSH, null);
+		        	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	settingsDialog = new Dialog(this);
+		        	settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		        	settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.commands
+		        	        , null));
+		        	settingsDialog.show();
+	    		}
+	    		if(select == 1)
+	    		{
+	    			tts.speak("Try the mowdis command", TextToSpeech.QUEUE_FLUSH, null);
+		        	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	settingsDialog = new Dialog(this);
+		        	settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		        	settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.commands
+		        	        , null));
+		        	settingsDialog.show();
+	    		}
+	    		if(select == 2)
+	    		{
+	    			tts.speak("Try asking me your name", TextToSpeech.QUEUE_FLUSH, null);
+		        	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	settingsDialog = new Dialog(this);
+		        	settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		        	settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.commands
+		        	        , null));
+		        	settingsDialog.show();
+	    		}
+	    		
+	    	}
+	    	else{
+	        	tts.speak("The following are commands I recognize", TextToSpeech.QUEUE_FLUSH, null);
+	        	try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        	settingsDialog = new Dialog(this);
+	        	settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+	        	settingsDialog.setContentView(getLayoutInflater().inflate(R.layout.commands
+	        	        , null));
+	        	settingsDialog.show();
+	        	commandViewed = true;
+	    	}
 	    }
 	    
 	    public void listenUp(View v){
@@ -168,13 +243,31 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 		        else if(wordStr.equals("turn blue"))
 		        {
 		        	txtText.setText("Command Recognized");
-		        	reL.setBackgroundColor(Color.argb(255, 34, 60, 255));
+		        	tts.speak("Blue. Set.", TextToSpeech.QUEUE_FLUSH, null);
+		        	reL.setBackgroundColor(Color.argb(255, 0, 0, 255));
+		        	txtText.setTextColor(Color.argb(255, 255, 255, 255));
+		        	
+		        }
+		        else if(wordStr.equals("turn red"))
+		        {
+		        	txtText.setText("Command Recognized");
+		        	tts.speak("Red. Set.", TextToSpeech.QUEUE_FLUSH, null);
+		        	reL.setBackgroundColor(Color.argb(255, 255, 0, 0));
+		        	txtText.setTextColor(Color.argb(255, 255, 255, 255));
+		        	
+		        }
+		        else if(wordStr.equals("turn green"))
+		        {
+		        	txtText.setText("Command Recognized");
+		        	tts.speak("Green. Set.", TextToSpeech.QUEUE_FLUSH, null);
+		        	reL.setBackgroundColor(Color.argb(255, 0, 255, 0));
 		        	txtText.setTextColor(Color.argb(255, 255, 255, 255));
 		        	
 		        }
 		        else if(wordStr.equals("change back"))
 		        {
 		        	txtText.setText("Command Recognized");
+		        	tts.speak("Color returned to normal", TextToSpeech.QUEUE_FLUSH, null);
 		        	reL.setBackgroundColor(Color.argb(255, 255, 255, 255));
 		        	txtText.setTextColor(Color.argb(255, 0, 0, 0));
 		        }
@@ -225,14 +318,25 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 			        tts.speak("Hello, " + name, TextToSpeech.QUEUE_FLUSH, null);
 			        nameTrigger = false;
 		        }
-		        
-		        else if(wordStr.equals("what is my name") && !name.equals(""))
+		        else if(wordStr.equals("that's not my name") && !name.equals(""))
+		        {
+		        	tts.speak("Oh! I thought I was still talking to " + name +". What is your name?",TextToSpeech.QUEUE_FLUSH, null);
+		        	name ="";
+		        	nameTrigger=true;
+		        }
+		        else if((wordStr.equals("what is my name")||wordStr.equals("what's my name"))  && !name.equals(""))
 		        {
 		        	txtText.setText("!!!");
+		        	if(name.equals("David")){
+		        		String text = "Your name is " + name +", better known as Doctor Game";
+			        	tts.speak(text,TextToSpeech.QUEUE_FLUSH, null);
+		        	}
+		        	else{
 		        	String text = "Your name is " + name;
 		        	tts.speak(text,TextToSpeech.QUEUE_FLUSH, null);
+		        	}
 		        }
-		        else if(wordStr.equals("what is my name") && nameTrigger == false)
+		        else if((wordStr.equals("what is my name")||wordStr.equals("what's my name")) && nameTrigger == false)
 		        {
 		        	nameTrigger = true;
 		        	txtText.setText("???");

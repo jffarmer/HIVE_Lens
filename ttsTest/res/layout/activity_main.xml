@@ -31,8 +31,8 @@
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
-        android:onClick="modis"
-        android:text="MODIS" />
+        android:onClick="commands"
+        android:text="Commands" />
 
     <Button
         android:id="@+id/button1"
@@ -42,7 +42,7 @@
         android:layout_below="@+id/txtText"
         android:layout_marginTop="48dp"
         android:onClick="listenUp"
-        android:text="Copy Me" />
+        android:text="Listen" />
 
     <Button
         android:id="@+id/button4"
