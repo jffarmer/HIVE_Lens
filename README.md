@@ -1,3 +1,1 @@
-HAI GUISE
-Joe was here
-Kyle is here
+This is a demonstration of capabilities with the Android TTS Engine.
