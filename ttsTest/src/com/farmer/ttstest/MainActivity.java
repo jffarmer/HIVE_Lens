@@ -419,7 +419,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 			        		txtText.setText(resultStr);
 			        		tts.speak(resultStr, TextToSpeech.QUEUE_FLUSH, null);
 			        	}
-			        	if(operatorStr.equals("over")||operatorStr.equals("over"))
+			        	if(operatorStr.equals("over"))
 			        	{
 			        		int result = firstNum / secondNum;
 			        		String resultStr = ""+result;
