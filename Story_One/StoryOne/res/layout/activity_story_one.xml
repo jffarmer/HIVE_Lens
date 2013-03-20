@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rightsideup"
+    tools:context=".HiveLens" >
+
+    <TextView
+        android:id="@+id/yCoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/xCoord"
+        android:layout_marginTop="20dp"
+        android:text="@string/yCoord"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/zCoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/yCoord"
+        android:layout_marginTop="20dp"
+        android:text="@string/zCoord"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/xCoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/xCoord"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/gyroToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/zCoord"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="gyroToast"
+        android:text="@string/gyroToast"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/xOverOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gyroToast"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:text="@string/xOverOne"
+        android:textColor="#FFFFFF" />
+    
+    <TextView
+        android:id="@+id/yOverOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/xOverOne"
+        android:layout_marginTop="30dp"
+        android:text="@string/yOverOne"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/zOverOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/yOverOne"
+        android:layout_marginTop="30dp"
+        android:text="@string/zOverOne"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/zOverOne"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:onClick="resetClicked"
+        android:text="@string/reset" />
+    
+</RelativeLayout>

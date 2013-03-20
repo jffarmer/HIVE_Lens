@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hive Lens</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_hive_lens2">HiveLens2</string>
+    <string name="xCoord">Acceleration around X axis</string>
+    <string name="yCoord">Acceleration around Y axis</string>
+    <string name="zCoord">Acceleration around Z axis</string>
+    <string name="gyroToast">Info</string>
+    <string name="accelToast">Info</string>
+    <string name="goToGyro">To Gyroscope Info</string>
+    <string name="goToAccel">To Accelerometer Info</string>
+    <string name="xOverOne">Rotation around X axis is less than one rad/s </string>
+    <string name="yOverOne">Rotation around Y axis is less than one rad/s </string>
+    <string name="zOverOne">Rotation around Z axix is less than one rad/s </string>
+    <string name="reset">Reset Rotation Data</string>
+
+</resources>
