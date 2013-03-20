@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hivelens_background"
+    tools:context=".HIVELens" >
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button2"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/selector_lens_button"
+                android:onClick="onLensButtonClick"
+                android:text="@string/lens_button"
+                android:textColor="@drawable/selector_lens_text" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="85dp"
+                android:background="@drawable/selector_lens_button"
+                android:onClick="chatButtonPressed"
+                android:text="@string/chat_button"
+                android:textColor="@drawable/selector_lens_text" />
+
+</RelativeLayout>
