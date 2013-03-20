@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+	<PreferenceCategory
+        android:title="Updates"
+        android:key="updates_category">
+         
+        <CheckBoxPreference
+            android:key="perform_updates"
+            android:summary="Enable or disable data updates"
+            android:title="Enable updates"
+            android:defaultValue="true"/>
+         
+        <ListPreference
+            android:key="updates_interval"
+            android:title="Updates interval"
+            android:summary="Define how often updates will be performed"
+            android:defaultValue="2419200000"
+            android:entries="@array/updateInterval"
+            android:entryValues="@array/updateIntervalValues"
+            android:dependency="perform_updates"/>   
+             
+    </PreferenceCategory>
+ 
+    <PreferenceCategory
+        android:title="Preferences"
+        android:key="preferences_category">
+ 
+        <CheckBoxPreference
+            android:key="enable_sound"
+            android:summary="Enable or disable sound"
+            android:title="Enable sound"
+            android:defaultValue="true"/>
+ 
+    </PreferenceCategory>
+    
+    
+</PreferenceScreen>

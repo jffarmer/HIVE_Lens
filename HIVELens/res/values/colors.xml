@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Orange">#FF5C1B</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Gray">#808080</color>
+	<color name="TransparentBlack">#3318B5BC</color>
+	<color name="TransparentBlackFocused">#4418B5BC</color>
+	<color name="TransparentBlackPressed">#6618B5BC</color>
+</resources>
